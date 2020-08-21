@@ -14,6 +14,7 @@ This TTS model consists of two networks: (1) Text2Mel, which synthesize a mel sp
 <p align = "center">
     <img src = "model.png">
 </p>
+
 <br>
 ## Training/Synthesizing English Text-To-Speech
 1. Download the dataset into /datasets folder
