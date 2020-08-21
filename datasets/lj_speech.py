@@ -7,7 +7,9 @@ import numpy as np
 
 from torch.utils.data import Dataset
 
-vocab = "PE abcdefghijklmnopqrstuvwxyz'.?"  # P: Padding, E: EOS.
+#vocab = "PE abcdefghijklmnopqrstuvwxyz'.?"  # P: Padding, E: EOS.
+vocab = "PE অআইঈউঊঋএঐওঔা ি ী ু ূ ৃ ে ৈ ো ৌক খ গ ঘ ঙ চ ছ জ ঝ ঞ ট ঠ ড ঢ ণত থ দ ধ ন প ফ ব ভমযরলশষসহড়ঢ়য়ৎংঃঁ্ঽ‍্য‍  ‍্র'"
+#vocab = "PE অআইঈউঊঋএঐওঔা ি ী ু ূ ৃ ে ৈ ো ৌক খ গ ঘ ঙ চ ছ জ ঝ ঞ ট ঠ ড ঢ ণত থ দ ধ ন প ফ ব ভমযরলশষসহড়ঢ়য়ৎংঃঁ্ঽ‍্য‍  ‍্র'.?"
 char2idx = {char: idx for idx, char in enumerate(vocab)}
 idx2char = {idx: char for idx, char in enumerate(vocab)}
 
@@ -15,19 +17,19 @@ idx2char = {idx: char for idx, char in enumerate(vocab)}
 def text_normalize(text):
     text = ''.join(char for char in unicodedata.normalize('NFD', text)
                    if unicodedata.category(char) != 'Mn')  # Strip accents
-
-    text = text.lower()
-    text = re.sub("[^{}]".format(vocab), " ", text)
+    #print(text)
+    #text = text.lower()
+    text = re.sub("[^{}]()".format(vocab), " ", text)
     text = re.sub("[ ]+", " ", text)
     return text
-
 
 def read_metadata(metadata_file):
     fnames, text_lengths, texts = [], [], []
     transcript = os.path.join(metadata_file)
+    #transcript = "/content/drive/My Drive/TTS_B/datasets/LJSpeech-1.1/line_index.tsv"
     lines = codecs.open(transcript, 'r', 'utf-8').readlines()
     for line in lines:
-        fname, _, text = line.strip().split("|")
+        fname, text = line.strip().split("\t")
 
         fnames.append(fname)
 
@@ -50,8 +52,8 @@ def get_test_data(sentences, max_n):
 class LJSpeech(Dataset):
     def __init__(self, keys, dir_name='LJSpeech-1.1'):
         self.keys = keys
-        self.path = os.path.join('/content/drive/My Drive/TTS/datasets', dir_name)
-        self.fnames, self.text_lengths, self.texts = read_metadata(os.path.join(self.path, 'metadata.csv'))
+        self.path = os.path.join("/content/drive/My Drive/TTSBn/datasets", dir_name)
+        self.fnames, self.text_lengths, self.texts = read_metadata(os.path.join(self.path, "line_index.tsv"))
 
     def slice(self, start, end):
         self.fnames = self.fnames[start:end]
