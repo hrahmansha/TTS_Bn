@@ -24,5 +24,5 @@ This TTS model consists of two networks: (1) Text2Mel, which synthesize a mel sp
 3. Train the SSRN model`
 4. Test the model
 <br>
-Colab Notebook : [This](https://colab.research.google.com/drive/1AjsxzBu6ekcv0GF3dyWubj04hhwwHkjE?usp=sharing) colab playground might seems to be a total mess.
+Colab Notebook : (https://colab.research.google.com/drive/1AjsxzBu6ekcv0GF3dyWubj04hhwwHkjE?usp=sharing) This colab playground might seems to be a total mess.
 
