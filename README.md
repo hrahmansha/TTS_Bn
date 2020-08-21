@@ -12,7 +12,7 @@ As there was hardware limitation, the training for the coarse mel spectrogram to
 This TTS model consists of two networks: (1) Text2Mel, which synthesize a mel spectrogram from an input text, and (2) Spectrogram Super-resolution Network (SSRN), which convert a coarse mel spectrogram to the full STFT(Short-time Fourier transform) spectrogram. Figure below shows the overall architecture of the model. For more read [this](https://arxiv.org/abs/1710.08969)
 
 <p align = "center">
-    <img src = "model.PNG">
+    <img src = "model.png">
 </p>
 
 ## Training/Synthesizing English Text-To-Speech
