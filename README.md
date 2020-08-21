@@ -1,28 +1,26 @@
-PyTorch implementation of
-[Efficiently Trainable Text-to-Speech System Based on Deep Convolutional Networks with Guided Attention](https://arxiv.org/abs/1710.08969)
-based partially on the following projects:
-* https://github.com/Kyubyong/dc_tts (audio pre processing)
-* https://github.com/r9y9/deepvoice3_pytorch (data loader sampler)
+Methodology based on : [Efficiently Trainable Text-to-Speech System Based on Deep Convolutional Networks with Guided Attention](https://arxiv.org/abs/1710.08969)
+Implementation based on: [pytorch-dc-tts](https://github.com/tugstugi/pytorch-dc-tts)
 
-## Online Text-To-Speech Demo
-The following notebooks are executable on [https://colab.research.google.com ](https://colab.research.google.com):
-* [Mongolian Male Voice TTS Demo](https://colab.research.google.com/github/tugstugi/pytorch-dc-tts/blob/master/notebooks/MongolianTTS.ipynb)
-* [English Female Voice TTS Demo (LJ-Speech)](https://colab.research.google.com/github/tugstugi/pytorch-dc-tts/blob/master/notebooks/EnglishTTS.ipynb)
+Bengali Text to Speech Dataset: [Bangla tts dataset by google](https://research.google/tools/datasets/bengali-tts/) 
+ contains approximately 3100 bangla sentences. This dataset was collected from native Indian Bengali and Bangladesh Bengali
+speakers.
 
-For audio samples and pretrained models, visit the above notebook links.
+## Result
+As there was hardware limitation, the training for the coarse mel spectrogram to the full STFT spectrogram was done only for 60 iterations. The audio samples and pretrained models can be found here [link](https://drive.google.com/drive/folders/1SVvGq1D5v6CJ9Uk0mEFSz--Y8eT3yoGK?usp=sharing)
+
+## About The Model Architecture
+This TTS model consists of two networks: (1) Text2Mel, which synthesize a mel spectrogram from an input text, and (2) Spectrogram Super-resolution Network (SSRN), which convert a coarse mel spectrogram to the full STFT(Short-time Fourier transform) spectrogram. Figure below shows the overall architecture of the model. For more read [this](https://arxiv.org/abs/1710.08969)
+
+<p align = "center">
+    <img src = "model.PNG">
+</p>
 
 ## Training/Synthesizing English Text-To-Speech
-The English TTS uses the [LJ-Speech](https://keithito.com/LJ-Speech-Dataset/) dataset.
-1. Download the dataset: `python dl_and_preprop_dataset.py --dataset=ljspeech`
-2. Train the Text2Mel model: `python train-text2mel.py --dataset=ljspeech`
-3. Train the SSRN model: `python train-ssrn.py --dataset=ljspeech`
-4. Synthesize sentences: `python synthesize.py --dataset=ljspeech`
-   * The WAV files are saved in the `samples` folder.
+1. Download the dataset into /datasets folder
+2. Preprocess the dataset.
+2. Train the Text2Mel model
+3. Train the SSRN model`
+4. Test the model
 
-## Training/Synthesizing Mongolian Text-To-Speech
-The Mongolian text-to-speech uses 5 hours audio from the [Mongolian Bible](https://www.bible.com/mn/versions/1590-2013-ariun-bibli-2013).
-1. Download the dataset: `python dl_and_preprop_dataset.py --dataset=mbspeech`
-2. Train the Text2Mel model: `python train-text2mel.py --dataset=mbspeech`
-3. Train the SSRN model: `python train-ssrn.py --dataset=mbspeech`
-4. Synthesize sentences: `python synthesize.py --dataset=mbspeech`
-   * The WAV files are saved in the `samples` folder.
+Colab Notebook : [This](https://colab.research.google.com/drive/1AjsxzBu6ekcv0GF3dyWubj04hhwwHkjE?usp=sharing) colab playground might seems to be a total mess.
+
