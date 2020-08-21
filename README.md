@@ -17,7 +17,7 @@ This TTS model consists of two networks: (1) Text2Mel, which synthesize a mel sp
     <img src = "model.png">
 </p>
 
-### Training Preocess
+### Training Process
 1. Download the dataset into /datasets folder
 2. Preprocess the dataset.
 2. Train the Text2Mel model
